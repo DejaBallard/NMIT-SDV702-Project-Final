@@ -25,6 +25,12 @@ namespace DesignB_Store_UWP
         public MainPage()
         {
             this.InitializeComponent();
+            cmbBrands.Items.Add("Silver Moon");
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(pgProducts));
         }
     }
 }
