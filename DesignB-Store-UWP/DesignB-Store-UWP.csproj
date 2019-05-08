@@ -129,6 +129,15 @@
       <DependentUpon>pgProducts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ucBracelet.xaml.cs">
+      <DependentUpon>ucBracelet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucNecklace.xaml.cs">
+      <DependentUpon>ucNecklace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ucRing.xaml.cs">
+      <DependentUpon>ucRing.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -160,6 +169,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="pgProducts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucBracelet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucNecklace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ucRing.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

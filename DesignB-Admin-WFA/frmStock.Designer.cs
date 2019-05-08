@@ -34,7 +34,6 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtName = new System.Windows.Forms.TextBox();
             this.txtMaterial = new System.Windows.Forms.TextBox();
-            this.txtBrand = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -43,7 +42,8 @@
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnOkay = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.txtDescription = new System.Windows.Forms.RichTextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -93,13 +93,6 @@
             this.txtMaterial.Name = "txtMaterial";
             this.txtMaterial.Size = new System.Drawing.Size(170, 20);
             this.txtMaterial.TabIndex = 6;
-            // 
-            // txtBrand
-            // 
-            this.txtBrand.Location = new System.Drawing.Point(102, 35);
-            this.txtBrand.Name = "txtBrand";
-            this.txtBrand.Size = new System.Drawing.Size(170, 20);
-            this.txtBrand.TabIndex = 7;
             // 
             // label4
             // 
@@ -169,20 +162,29 @@
             this.btnOkay.Text = "Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // txtDescription
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(102, 114);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(170, 46);
-            this.richTextBox1.TabIndex = 18;
-            this.richTextBox1.Text = "";
+            this.txtDescription.Location = new System.Drawing.Point(102, 114);
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(170, 46);
+            this.txtDescription.TabIndex = 18;
+            this.txtDescription.Text = "";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(102, 34);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(170, 21);
+            this.comboBox1.TabIndex = 19;
             // 
             // frmStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 304);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnOkay);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtQuantity);
@@ -191,7 +193,6 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtBrand);
             this.Controls.Add(this.txtMaterial);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.txtID);
@@ -213,7 +214,6 @@
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.TextBox txtMaterial;
-        private System.Windows.Forms.TextBox txtBrand;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnCancel;
@@ -222,6 +222,7 @@
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnOkay;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox txtDescription;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DesignB-Server-CLI")]
+[assembly: AssemblyTitle("DesignB_Server_CLI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DesignB-Server-CLI")]
+[assembly: AssemblyProduct("DesignB_Server_CLI")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a49f7066-bdbe-4007-8b4f-6a0449fbbec7")]
+[assembly: Guid("fc9b28c1-3798-4da4-8e90-441d250843c2")]
 
 // Version information for an assembly consists of the following four values:
 //
