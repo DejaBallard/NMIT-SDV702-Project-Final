@@ -1,0 +1,21 @@
+﻿<ContentDialog
+    x:Class="DesignB_Store_UWP.OrderDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DesignB_Store_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Enter your details"
+    PrimaryButtonText="Confirm"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <Grid>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="65,-4,0,0"  VerticalAlignment="Top" Width="205"/>
+        <TextBox x:Name="txtAddress" HorizontalAlignment="Left" Margin="65,35,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.093,0.062" Width="205"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="-2,2,0,0" Text="Email:" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-1.895,-0.45"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="-2,41,0,0" Text="Address:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+    </Grid>
+</ContentDialog>

@@ -8,11 +8,11 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" Text="Welcome to Design.B" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI" FontSize="24" Width="480" FontWeight="Bold" FontStyle="Italic" TextAlignment="Center"/>
-        <ComboBox x:Name="cboBrands" HorizontalAlignment="Left" Margin="122,256,0,0" VerticalAlignment="Top" FontFamily="Segoe UI" Width="368"/>
+        <ComboBox x:Name="cboBrands" HorizontalAlignment="Left" Margin="122,256,0,0" VerticalAlignment="Top" FontFamily="Segoe UI" Width="368" AutomationProperties.PositionInSet="-3" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTextSearchEnabled="False"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,262,0,0" Text="Shop by Brands:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="btnSearch" Content="Search..." HorizontalAlignment="Left" Margin="10,338,0,0" VerticalAlignment="Top" Width="480" Click="BtnSearch_Click"/>
+        <Button x:Name="btnSearch" Content="Search..." HorizontalAlignment="Left" Margin="10,500,0,0" VerticalAlignment="Top" Width="480" Click="BtnSearch_Click"/>
         <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="7,85,0,0" Text="Description" TextWrapping="Wrap" VerticalAlignment="Top" Height="28" Width="483" TextAlignment="Center"/>
 
     </Grid>

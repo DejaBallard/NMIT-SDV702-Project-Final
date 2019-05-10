@@ -27,6 +27,9 @@ namespace DesignB_Server_CLI
             Console.WriteLine("DesignB Web-API Self hosted on " + _baseAddress);
             Console.WriteLine("Connecting to Database...");
             Console.WriteLine("Hit ENTER to exit...");
+            StoreController storeController = new StoreController();
+            //clsBrand brand = storeController.GetBrand("Tiffany & Co");
+           // Console.WriteLine(brand.Description);
             Console.ReadLine();
             server.CloseAsync().Wait();
 

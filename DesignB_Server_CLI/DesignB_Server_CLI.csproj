@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminController.cs" />
     <Compile Include="clsDbConnection.cs" />
     <Compile Include="DTO.cs" />
     <Compile Include="Program.cs" />

@@ -7,6 +7,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -25,12 +26,21 @@ namespace DesignB_Store_UWP
         public MainPage()
         {
             this.InitializeComponent();
-            cboBrands.Items.Add("Silver Moon");
         }
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(pgProducts));
+            if (cboBrands.SelectedItem != null)
+
+                Frame.Navigate(typeof(pgProducts), cboBrands.SelectedItem as string);
+        }
+
+        private async void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (string br in await ServiceClient.GetBrandNamesAsync())
+            {
+                cboBrands.Items.Add(br);
+            }
         }
     }
 }

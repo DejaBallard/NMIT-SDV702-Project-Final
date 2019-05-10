@@ -9,17 +9,17 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" FontFamily="Segoe UI">
 
     <Grid>
-        <TextBlock x:Name="txbDescription" HorizontalAlignment="Left" Margin="10,35,0,0" Text="Description:" TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
-        <TextBlock x:Name="txbName" HorizontalAlignment="Left" Margin="10,10,0,0" Text="Item Name:" TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
-        <TextBlock x:Name="txbPrice" HorizontalAlignment="Left" Margin="10,126,0,0" Text="Price:" TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
-        <TextBlock x:Name="txbStock" HorizontalAlignment="Left" Margin="10,151,0,0" Text="Stock:" TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
-        <TextBlock x:Name="txbMaterial" HorizontalAlignment="Left" Margin="10,60,0,0" Text="Material:" TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
+        <TextBlock x:Name="txbDescription" HorizontalAlignment="Left" Margin="10,35,0,0" Text="Description: " TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
+        <TextBlock x:Name="txbName" HorizontalAlignment="Left" Margin="10,10,0,0" Text="Item Name: " TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
+        <TextBlock x:Name="txbPrice" HorizontalAlignment="Left" Margin="10,126,0,0" Text="Price: " TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
+        <TextBlock x:Name="txbStock" HorizontalAlignment="Left" Margin="10,151,0,0" Text="Stock: " TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
+        <TextBlock x:Name="txbMaterial" HorizontalAlignment="Left" Margin="10,60,0,0" Text="Material: " TextWrapping="Wrap" VerticalAlignment="Top" Width="480"/>
         <ContentControl x:Name="ctcItemSpecs" Content="ContentControl" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,85,0,0" Width="480"/>
-        <Button x:Name="btnPurchase" Content="Purchase" HorizontalAlignment="Left" Margin="315,287,0,0" VerticalAlignment="Top" Width="175"/>
-        <ComboBox x:Name="cmbQuanity" HorizontalAlignment="Left" Margin="390,203,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="btnPurchase" Content="Purchase" HorizontalAlignment="Left" Margin="315,468,0,0" VerticalAlignment="Top" Width="175" Tapped="BtnPurchase_Tapped"/>
+        <ComboBox x:Name="cmbQuanity" HorizontalAlignment="Left" Margin="390,203,0,0" VerticalAlignment="Top" Width="100" DropDownClosed="CmbQuanity_DropDownClosed"/>
         <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="315,209,0,0" Text="Quanity:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Image x:Name="imgItem" HorizontalAlignment="Left" Height="300" Margin="10,203,0,0" VerticalAlignment="Top" Width="300"/>
-        <TextBlock x:Name="txbTotalPrice" HorizontalAlignment="Left" Margin="315,249,0,0" Text="Total Price:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txbTotalPrice" HorizontalAlignment="Left" Margin="315,443,0,0" Text="Total Price: " TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
 
     </Grid>
 </Page>

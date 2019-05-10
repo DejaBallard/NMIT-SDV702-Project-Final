@@ -9,10 +9,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <ListBox x:Name="lstItems" HorizontalAlignment="Left" Height="445" Margin="10,168,0,0" VerticalAlignment="Top" Width="480" FontFamily="Segoe UI"/>
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" Text="Silver Moon" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" FontSize="36" TextAlignment="Center"/>
-        <TextBlock x:Name="txbDescription" HorizontalAlignment="Left" Margin="10,63,0,0" Text="Description:" TextWrapping="Wrap" VerticalAlignment="Top" Height="100" Width="375"/>
+        <ListBox x:Name="lstItems" HorizontalAlignment="Left" Height="406" Margin="10,207,0,0" VerticalAlignment="Top" Width="480" FontFamily="Segoe UI" DoubleTapped="LstItems_DoubleTapped"/>
+        <TextBlock x:Name="txbBrand" HorizontalAlignment="Left" Margin="10,10,0,0" Text="Silver Moon" TextWrapping="Wrap" VerticalAlignment="Top" Width="480" FontSize="36" TextAlignment="Center"/>
+        <TextBlock x:Name="txbDescription" HorizontalAlignment="Left" Margin="10,63,0,0" Text="Description:" TextWrapping="Wrap" VerticalAlignment="Top" Height="100" Width="375" FontFamily="Segoe UI"/>
         <Image x:Name="imgBrand" HorizontalAlignment="Left" Height="100" Margin="390,63,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="40,182,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="258,182,0,0" Text="Price" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Segoe UI"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="426,182,0,0" Text="Quantity" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
     </Grid>
 </Page>
