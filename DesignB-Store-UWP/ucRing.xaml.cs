@@ -17,11 +17,16 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DesignB_Store_UWP
 {
-    public sealed partial class ucRing : UserControl
+    public sealed partial class ucRing : IItemControl
     {
         public ucRing()
         {
             this.InitializeComponent();
+        }
+
+        public void UpdateControl(clsAllItems prWork)
+        {
+            txbRingSize.Text += prWork.RingSize;
         }
     }
 }

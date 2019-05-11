@@ -17,11 +17,16 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DesignB_Store_UWP
 {
-    public sealed partial class ucNecklace : UserControl
+    public sealed partial class ucNecklace : IItemControl
     {
         public ucNecklace()
         {
             this.InitializeComponent();
+        }
+
+        public void UpdateControl(clsAllItems prWork)
+        {
+            txbLength.Text += prWork.Length;
         }
     }
 }

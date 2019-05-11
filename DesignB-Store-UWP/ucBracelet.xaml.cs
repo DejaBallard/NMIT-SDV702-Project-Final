@@ -17,11 +17,16 @@ using Windows.UI.Xaml.Navigation;
 
 namespace DesignB_Store_UWP
 {
-    public sealed partial class ucBracelet : UserControl
+    public sealed partial class ucBracelet : IItemControl
     {
         public ucBracelet()
         {
             this.InitializeComponent();
+        }
+
+        public void UpdateControl(clsAllItems prWork)
+        {
+            txbDiameter.Text += prWork.Diameter;
         }
     }
 }

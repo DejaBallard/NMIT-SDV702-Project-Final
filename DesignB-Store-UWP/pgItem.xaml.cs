@@ -25,10 +25,32 @@ namespace DesignB_Store_UWP
     public sealed partial class pgItem : Page
     {
         private clsAllItems _Item;
+        private delegate void LoadItemControlDelegate(clsAllItems prItem);
+        private Dictionary<char, Delegate> _ItemContent;
+        private bool _Navigation = false;
 
         public pgItem()
         {
             this.InitializeComponent();
+            _ItemContent = new Dictionary<char, Delegate>
+            {
+                {'R',new LoadItemControlDelegate(RunRing)},
+                {'B',new LoadItemControlDelegate(RunBracelet)},
+                {'N',new LoadItemControlDelegate(RunNecklace)}
+            };
+        }
+
+        private void RunRing(clsAllItems prItem)
+        {
+            ctcItemSpecs.Content = new ucRing();
+        }
+        private void RunBracelet(clsAllItems prItem)
+        {
+            ctcItemSpecs.Content = new ucBracelet();
+        }
+        private void RunNecklace(clsAllItems prItem)
+        {
+            ctcItemSpecs.Content = new ucNecklace();
         }
 
         private void updatePage(clsAllItems prItem)
@@ -39,16 +61,24 @@ namespace DesignB_Store_UWP
             txbMaterial.Text += prItem.Material;
             txbPrice.Text += Convert.ToString(prItem.Price);
             txbStock.Text += Convert.ToString(prItem.Quantity);
+            (ctcItemSpecs.Content as IItemControl).UpdateControl(prItem);
             for(int i = 1; i <= _Item.Quantity; i++)
             {
                 cmbQuanity.Items.Add(i);
             }
             LoadImage();
         }
+
+        private void dispatchItemContent(clsAllItems prWork)
+        {
+            _ItemContent[prWork.Type].DynamicInvoke(prWork);
+            updatePage(prWork);
+        }
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            updatePage(e.Parameter as clsAllItems);
+            dispatchItemContent(e.Parameter as clsAllItems);
         }
         public async void LoadImage()
         {
@@ -70,22 +100,39 @@ namespace DesignB_Store_UWP
 
         private async void BtnPurchase_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            _Item.Quantity -= (Convert.ToInt32(cmbQuanity.SelectedItem));
-            //{
-            //    OrderDialog orderDialog = new OrderDialog();
-            //    var result = await orderDialog.ShowAsync();
-            //}
-                int lcResult = await ServiceClient.UpdateItemAsync(_Item);
-            if(lcResult == 1)
-            {
+            int lcQuantity = (Convert.ToInt32(cmbQuanity.SelectedItem));
+            _Item.Quantity -=lcQuantity;
+
                 OrderDialog orderDialog = new OrderDialog();
-                var result = await orderDialog.ShowAsync();
+                var Dialogresult = await orderDialog.ShowAsync();
+                if (Dialogresult == ContentDialogResult.Primary)
+                {
+                    int lcStockResult = await ServiceClient.UpdateItemAsync(_Item);
+
+                    if (lcStockResult == 1)
+                       {
+                        clsOrder lcOrder = new clsOrder();
+                        lcOrder.Email = orderDialog.returnText()[0];
+                        lcOrder.Address = orderDialog.returnText()[1];
+                        lcOrder.Item = _Item;
+                        lcOrder.DateOrdered = DateTime.Now;
+                        lcOrder.Quantity = lcQuantity;
+                        lcOrder.TotalPrice = lcQuantity * _Item.Price;
+                        lcOrder.Status = "Pending";
+                        int order = await ServiceClient.InsertOrderAsync(lcOrder);
+                    if(order == 1)
+                    {
+
+                    }
+                    }
+                    else
+                    {
+                        MessageDialog message = new MessageDialog("Err");
+                        message.ShowAsync();
+                }
+
             }
-            else
-            {
-                MessageDialog message = new MessageDialog("Err");
-                message.ShowAsync();
-            }
+           
         }
     }
 }

@@ -61,7 +61,7 @@ namespace DesignB_Server_CLI
                 Quantity = Convert.ToInt32(dr["item_quantity"]),
                 TimeStamp = Convert.ToDateTime(dr["item_timestamp"]),
                 Image64 = Convert.ToString(dr["item_image"]),
-                Type = Convert.ToString(dr["item_type"]),
+                Type = Convert.ToChar(dr["item_type"]),
 
                 Length = dr["item_length"] is DBNull ? (int?)null : Convert.ToInt32(dr["item_length"]),
 
@@ -73,22 +73,15 @@ namespace DesignB_Server_CLI
         #endregion
 
         #region Post Order into database
-        public string PostOrder(clsOrder prOrder)
+        public int PostOrder(clsOrder prOrder)
         {
-            try
-            {
-                int lcRecCount = clsDbConnection.Execute("INSERT INTO tbl_order" +
-                    "(ordr_email, ordr_address, ordr_item, ordr_dateorderd, ordr_quantity, ordr_totalprice, ordr_status" +
-                    "VALUES (@EMAIL, @ADDRESS, @ITEMID, @DATEORDERED, @QUANTITY, @TOTALPRICE, @STATUS",
+
+                int lcRecCount = clsDbConnection.Execute("INSERT INTO tbl_orders" +
+                    "(ordr_email, ordr_address, ordr_item, ordr_dateordered, ordr_quantity, ordr_totalprice, ordr_status)" +
+                    "VALUES (@EMAIL, @ADDRESS, @ITEMID, @DATEORDERED, @QUANTITY, @TOTALPRICE, @STATUS);",
                     prepareOrderParameter(prOrder));
-                if (lcRecCount == 1)
-                    return "Order has been sent";
-                else
-                    return "Unexpected order count: " + lcRecCount;
-            } catch (Exception ex)
-            {
-                return ex.GetBaseException().Message;
-            }
+                return lcRecCount;
+
         }
         private Dictionary<string, object> prepareOrderParameter(clsOrder prOrder) {
             Dictionary<string, object> lcPar = new Dictionary<string, object>();

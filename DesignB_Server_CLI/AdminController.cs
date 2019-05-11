@@ -55,7 +55,7 @@ namespace DesignB_Server_CLI
                 Description = Convert.ToString(dr["item_description"]),
                 Price = Convert.ToSingle(dr["item_price"]),
                 TimeStamp = Convert.ToDateTime(dr["item_timestamp"]),
-                Type = Convert.ToString(dr["item_type"]),
+                Type = Convert.ToChar(dr["item_type"]),
 
                 Length = dr["item_length"] is DBNull ? (int?)null : Convert.ToInt32(dr["item_length"]),
 

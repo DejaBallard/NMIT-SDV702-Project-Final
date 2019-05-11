@@ -24,8 +24,16 @@ namespace DesignB_Store_UWP
             this.InitializeComponent();
         }
 
+        public List<string> returnText()
+        {
+            List<string> lcText = new List<string>();
+            lcText.Add(txtEmail.Text);
+            lcText.Add(txtAddress.Text);
+            return lcText;
+        }
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+
         }
 
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)

@@ -39,7 +39,10 @@ namespace DesignB_Store_UWP
                 return Convert.ToInt32(await lcRespMessage.Content.ReadAsStringAsync());
             }
         }
-
+        public async static Task<int> InsertOrderAsync(clsOrder prOrder)
+        {
+            return await InsertOrUpdateAsync(prOrder, "http://localhost:60064/api/store/PostOrder", "POST");
+        }
         internal async static Task<int> UpdateItemAsync(clsAllItems item)
         {
            return await InsertOrUpdateAsync(item, "http://localhost:60064/api/store/PutItemQTY", "PUT");

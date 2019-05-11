@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DTO.cs" />
+    <Compile Include="IItemControl.cs" />
     <Compile Include="OrderDialog.xaml.cs">
       <DependentUpon>OrderDialog.xaml</DependentUpon>
     </Compile>

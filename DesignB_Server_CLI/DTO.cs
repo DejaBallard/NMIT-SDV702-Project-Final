@@ -21,7 +21,7 @@ namespace DesignB_Server_CLI
         public int Quantity { get; set; }
         public DateTime TimeStamp { get; set; }
         public string Image64 { get; set; }
-        public string Type { get; set; }
+        public char Type { get; set; }
 
         //if  type = R (Ring)
         public string RingSize { get; set; }
