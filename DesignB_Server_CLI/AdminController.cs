@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace DesignB_Server_CLI
 {
-    class AdminController
+    public class AdminController : System.Web.Http.ApiController
     {
+        public List<String> GetBrandList()
+        {
+            DataTable lcResult = clsDbConnection.GetDataTable("SELECT brnd_name FROM tbl_brands", null);
+            List<String> lcBrands = new List<String>();
+            foreach (DataRow dr in lcResult.Rows)
+                lcBrands.Add((string)dr[0]);
+            return lcBrands;
+        }
         public List<clsOrder> GetOrderList()
         {
             DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_orders", null);
@@ -25,8 +33,8 @@ namespace DesignB_Server_CLI
                 Id = Convert.ToInt32(dr["ordr_id"]),
                 Email = Convert.ToString(dr["ordr_email"]),
                 Address = Convert.ToString(dr["ordr_address"]),
-                DateOrdered = Convert.ToDateTime(dr["ordr_dateorderd"]),
-                Item = getItem(Convert.ToInt32(dr["ordr_item"])), 
+                DateOrdered = Convert.ToDateTime(dr["ordr_dateordered"]),
+                Item = getItem(Convert.ToInt32(dr["ordr_item"])),
                 Quantity = Convert.ToInt32(dr["ordr_quantity"]),
                 TotalPrice = Convert.ToSingle(dr["ordr_totalprice"]),
                 Status = Convert.ToString(dr["ordr_status"]),
@@ -37,13 +45,13 @@ namespace DesignB_Server_CLI
         private clsAllItems getItem(int prId)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
-            par.Add("ID",prId); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_id = @ID", par);
+            par.Add("ID", prId); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_id = @ID", par);
             clsAllItems lcItems = new clsAllItems();
             foreach (DataRow dr in lcResult.Rows)
-                lcItems =(dataRow2AllItems(dr));
+                lcItems = (dataRow2AllItems(dr));
             return lcItems;
         }
-
+  
         private clsAllItems dataRow2AllItems(DataRow dr)
         {
             return new clsAllItems()
@@ -51,6 +59,7 @@ namespace DesignB_Server_CLI
                 Id = Convert.ToInt32(dr["item_id"]),
                 Name = Convert.ToString(dr["item_name"]),
                 Brand = Convert.ToString(dr["item_brand"]),
+                Quantity = Convert.ToInt32(dr["item_quantity"]),
                 Material = Convert.ToString(dr["item_material"]),
                 Description = Convert.ToString(dr["item_description"]),
                 Price = Convert.ToSingle(dr["item_price"]),
@@ -63,6 +72,47 @@ namespace DesignB_Server_CLI
 
                 RingSize = Convert.ToString(dr["item_size"])
             };
+        }
+
+
+        public clsBrand GetBrand(string prName)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(1);
+            par.Add("NAME", prName);
+            DataTable lcResult =
+            clsDbConnection.GetDataTable("SELECT * FROM tbl_brands WHERE brnd_name = @NAME", par);
+            if (lcResult.Rows.Count > 0)
+                return new clsBrand()
+                {
+                    Name = Convert.ToString(lcResult.Rows[0]["brnd_name"]),
+                    Description = Convert.ToString(lcResult.Rows[0]["brnd_description"]),
+                    Image64 = Convert.ToString(lcResult.Rows[0]["brnd_image"]),
+                    ItemList = getBrandItems(prName)
+                };
+            else
+                return null;
+        }
+
+
+        private List<clsAllItems> getBrandItems(string prBrandName)
+        {
+            if (prBrandName == "All")
+            {
+                DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items", null);
+                List<clsAllItems> lcItems = new List<clsAllItems>();
+                foreach (DataRow dr in lcResult.Rows)
+                    lcItems.Add(dataRow2AllItems(dr));
+                return lcItems;
+            }
+            else
+            {
+                Dictionary<string, object> par = new Dictionary<string, object>(1);
+                par.Add("NAME", prBrandName); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_brand = @NAME", par);
+                List<clsAllItems> lcItems = new List<clsAllItems>();
+                foreach (DataRow dr in lcResult.Rows)
+                    lcItems.Add(dataRow2AllItems(dr));
+                return lcItems;
+            }
         }
     }
 }

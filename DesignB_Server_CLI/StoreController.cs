@@ -40,12 +40,23 @@ namespace DesignB_Server_CLI
         #region Get items from database, into a list
         private List<clsAllItems> getBrandItems(string prBrandName)
         {
-            Dictionary<string, object> par = new Dictionary<string, object>(1);
-            par.Add("NAME", prBrandName); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_brand = @NAME", par);
-            List<clsAllItems> lcItems = new List<clsAllItems>();
-            foreach (DataRow dr in lcResult.Rows)
-                lcItems.Add(dataRow2AllItems(dr, prBrandName));
-            return lcItems;
+            if (prBrandName == "All")
+            {
+                DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items", null);
+                List<clsAllItems> lcItems = new List<clsAllItems>();
+                foreach (DataRow dr in lcResult.Rows)
+                    lcItems.Add(dataRow2AllItems(dr, prBrandName));
+                return lcItems;
+            }
+            else
+            {
+                Dictionary<string, object> par = new Dictionary<string, object>(1);
+                par.Add("NAME", prBrandName); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_brand = @NAME", par);
+                List<clsAllItems> lcItems = new List<clsAllItems>();
+                foreach (DataRow dr in lcResult.Rows)
+                    lcItems.Add(dataRow2AllItems(dr, prBrandName));
+                return lcItems;
+            }
         }
 
         private clsAllItems dataRow2AllItems(DataRow dr, string prBrandName)
@@ -115,7 +126,6 @@ namespace DesignB_Server_CLI
             return lcRecCount;
         }
         #endregion
-
     }
 
 }

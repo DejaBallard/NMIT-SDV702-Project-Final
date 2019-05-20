@@ -10,9 +10,16 @@ namespace DesignB_Admin_WFA
 {
     public partial class frmRing : DesignB_Admin_WFA.frmStock
     {
+        public static readonly frmRing Instance = new frmRing();
+
         public frmRing()
         {
             InitializeComponent();
+        }
+
+        internal static void Run(clsAllItems prItem)
+        {
+            Instance.SetDetails(prItem);
         }
     }
 }

@@ -12,28 +12,49 @@ namespace DesignB_Admin_WFA
 {
     public partial class frmMain : Form
     {
-        private string Item = "Ring   Silvermoon      $100    QTY:2";
-        private string Item2 = "Ring   Silvermoon      $100    QTY:1";
+        private List<clsAllItems> _Items = new List<clsAllItems>();
+        private List<clsOrder> _Orders = new List<clsOrder>();
+        private float _TotalOrders;
 
         public frmMain()
         {
             InitializeComponent();
-            lstStock.Items.Add(Item);
-            lstOrders.Items.Add(Item2);
-            lblStockPRC.Text += " $200";
-            lblStockQTY.Text += " 2";
-            lblOrdersPRC.Text += " $100";
-            lblOrdersQTY.Text += " 1";
-        }
+            updateDisplay();
 
-        private void btnEditOrder_Click(object sender, EventArgs e)
+        }
+        private async void updateDisplay()
         {
+            lstStock.DataSource = null;
+            lstOrders.DataSource = null;
+            _TotalOrders = 0;
 
+            cboBrands.DataSource = await ServiceClient.GetBrandNamesAsync();
+            _Orders = await ServiceClient.GetOrderListAsync();
+            lstOrders.DataSource = _Orders;
+            foreach( clsOrder lcOrder in _Orders)
+            {
+                _TotalOrders += lcOrder.TotalPrice;
+            }
+            lblOrdersPRC.Text = "Total Order Price: " + _TotalOrders.ToString();
         }
 
-        private void btnDeleteOrder_Click(object sender, EventArgs e)
+        private async void cboBrands_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            clsBrand lcBrand = await ServiceClient.GetBrandAsync(cboBrands.SelectedItem as string);
+            lstStock.DataSource = lcBrand.ItemList;
         }
+
+        private void lstStock_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                frmStock.DispatchWorkForm(lstStock.SelectedValue as clsAllItems);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

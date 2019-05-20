@@ -21,9 +21,9 @@ namespace DesignB_Store_UWP
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class pgHome : Page
     {
-        public MainPage()
+        public pgHome()
         {
             this.InitializeComponent();
         }

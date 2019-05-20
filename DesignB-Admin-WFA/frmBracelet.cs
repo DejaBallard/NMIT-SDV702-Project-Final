@@ -14,5 +14,10 @@ namespace DesignB_Admin_WFA
         {
             InitializeComponent();
         }
+
+        internal static void Run(clsAllItems prItem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

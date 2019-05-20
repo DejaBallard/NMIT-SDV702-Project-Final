@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -27,7 +28,7 @@ namespace DesignB_Store_UWP
         private clsAllItems _Item;
         private delegate void LoadItemControlDelegate(clsAllItems prItem);
         private Dictionary<char, Delegate> _ItemContent;
-        private bool _Navigation = false;
+        private bool _Navigation = true;
 
         public pgItem()
         {
@@ -66,6 +67,8 @@ namespace DesignB_Store_UWP
             {
                 cmbQuanity.Items.Add(i);
             }
+            cmbQuanity.SelectedIndex = 0;
+            txbTotalPrice.Text = "Total Price: " + prItem.Price;
             LoadImage();
         }
 
@@ -80,6 +83,8 @@ namespace DesignB_Store_UWP
             base.OnNavigatedTo(e);
             dispatchItemContent(e.Parameter as clsAllItems);
         }
+
+
         public async void LoadImage()
         {
             var bitmap = new BitmapImage();
@@ -93,6 +98,7 @@ namespace DesignB_Store_UWP
 
         private void CmbQuanity_DropDownClosed(object sender, object e)
         {
+            _Navigation = false;
             float lcresult = 0;
             lcresult = _Item.Price * (Convert.ToInt32(cmbQuanity.SelectedItem));
             txbTotalPrice.Text ="Total Price: $"+ lcresult.ToString();
@@ -100,6 +106,7 @@ namespace DesignB_Store_UWP
 
         private async void BtnPurchase_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            _Navigation = false;
             int lcQuantity = (Convert.ToInt32(cmbQuanity.SelectedItem));
             _Item.Quantity -=lcQuantity;
 
@@ -109,31 +116,36 @@ namespace DesignB_Store_UWP
                 {
                     int lcStockResult = await ServiceClient.UpdateItemAsync(_Item);
 
-                    if (lcStockResult == 1)
-                       {
-                        clsOrder lcOrder = new clsOrder();
-                        lcOrder.Email = orderDialog.returnText()[0];
-                        lcOrder.Address = orderDialog.returnText()[1];
-                        lcOrder.Item = _Item;
-                        lcOrder.DateOrdered = DateTime.Now;
-                        lcOrder.Quantity = lcQuantity;
-                        lcOrder.TotalPrice = lcQuantity * _Item.Price;
-                        lcOrder.Status = "Pending";
-                        int order = await ServiceClient.InsertOrderAsync(lcOrder);
-                    if(order == 1)
+                if (lcStockResult == 1)
+                {
+                    clsOrder lcOrder = new clsOrder()
                     {
-
-                    }
+                        Email = orderDialog.EmailText(),
+                        Address = orderDialog.AddressText(),
+                        Item = _Item,
+                        DateOrdered = DateTime.Now,
+                        Quantity = lcQuantity,
+                        TotalPrice = lcQuantity * _Item.Price,
+                        Status = "Pending"
+                    };
+                        int order = await ServiceClient.InsertOrderAsync(lcOrder);
+                        if(order == 1)
+                        {
+                            MessageDialog message = new MessageDialog("Your order has been sent!");
+                            message.ShowAsync();
+                        }
                     }
                     else
                     {
-                        MessageDialog message = new MessageDialog("Err");
+                        MessageDialog message = new MessageDialog("Session Expired, Reloading page");
                         message.ShowAsync();
                 }
 
             }
            
         }
+
+
     }
 }
 

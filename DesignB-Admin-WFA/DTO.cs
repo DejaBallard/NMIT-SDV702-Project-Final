@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignB_Server_CLI
+namespace DesignB_Admin_WFA
 {
     /// <summary>
     /// Data Storage for all items being sold
@@ -31,16 +31,18 @@ namespace DesignB_Server_CLI
 
         //if type = N(Necklace)
         public int? Length { get; set; }
+
+
         public override string ToString()
         {
-            return Name + "\t" + Quantity;
+            return Name + " - " + Brand +" - "+ Quantity;
         }
     }
 
     /// <summary>
     /// Data storage for Orders
     /// </summary>
-   public class clsOrder
+    public class clsOrder
     {
         public int Id { get; set; }
         public string Email { get; set; }
@@ -51,17 +53,16 @@ namespace DesignB_Server_CLI
         public string Status { get; set; }
         public DateTime DateOrdered { get; set; }
         public DateTime TimeStamp { get; set; }
-
         public override string ToString()
         {
             return Quantity + " - " + Item.Name + " - " + Status;
         }
     }
-    
+
     /// <summary>
     /// Data storage for brands
     /// </summary>
-   public class clsBrand
+    public class clsBrand
     {
         public string Name { get; set; }
         public string Description { get; set; }

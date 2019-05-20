@@ -53,6 +53,11 @@ namespace DesignB_Store_UWP
         public string Status { get; set; }
         public DateTime DateOrdered { get; set; }
         public DateTime TimeStamp { get; set; }
+
+        public override string ToString()
+        {
+            return Quantity + " - " + Item.Name + " - " + Status;
+        }
     }
 
     /// <summary>
