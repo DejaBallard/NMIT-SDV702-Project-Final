@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtLength = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtLength
             // 
-            this.textBox1.Location = new System.Drawing.Point(102, 166);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 20);
-            this.textBox1.TabIndex = 19;
+            this.txtLength.Location = new System.Drawing.Point(102, 166);
+            this.txtLength.Name = "txtLength";
+            this.txtLength.Size = new System.Drawing.Size(170, 20);
+            this.txtLength.TabIndex = 19;
             // 
             // label8
             // 
@@ -53,9 +53,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(284, 304);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtLength);
             this.Name = "frmNecklace";
-            this.Controls.SetChildIndex(this.textBox1, 0);
+            this.Controls.SetChildIndex(this.txtLength, 0);
             this.Controls.SetChildIndex(this.label8, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -64,7 +64,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtLength;
         private System.Windows.Forms.Label label8;
     }
 }

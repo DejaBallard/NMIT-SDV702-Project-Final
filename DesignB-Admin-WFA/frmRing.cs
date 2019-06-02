@@ -21,5 +21,13 @@ namespace DesignB_Admin_WFA
         {
             Instance.SetDetails(prItem);
         }
+
+        protected override void updateForm()
+        {
+            base.updateForm();
+            // clsSculpture lcWork = (clsSculpture)this._Work;
+            txtSize.Text = _Item.RingSize;
+        }
+
     }
 }

@@ -59,28 +59,28 @@
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(78, 6);
+            this.txtID.Location = new System.Drawing.Point(96, 6);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(120, 20);
             this.txtID.TabIndex = 1;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(78, 32);
+            this.txtEmail.Location = new System.Drawing.Point(96, 32);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(120, 20);
             this.txtEmail.TabIndex = 2;
             // 
             // txtItem
             // 
-            this.txtItem.Location = new System.Drawing.Point(78, 134);
+            this.txtItem.Location = new System.Drawing.Point(96, 134);
             this.txtItem.Name = "txtItem";
             this.txtItem.Size = new System.Drawing.Size(120, 20);
             this.txtItem.TabIndex = 4;
             // 
             // txtBrand
             // 
-            this.txtBrand.Location = new System.Drawing.Point(78, 160);
+            this.txtBrand.Location = new System.Drawing.Point(97, 160);
             this.txtBrand.Name = "txtBrand";
             this.txtBrand.Size = new System.Drawing.Size(120, 20);
             this.txtBrand.TabIndex = 5;
@@ -132,7 +132,7 @@
             // 
             // nudQuantity
             // 
-            this.nudQuantity.Location = new System.Drawing.Point(78, 189);
+            this.nudQuantity.Location = new System.Drawing.Point(97, 189);
             this.nudQuantity.Name = "nudQuantity";
             this.nudQuantity.Size = new System.Drawing.Size(120, 20);
             this.nudQuantity.TabIndex = 12;
@@ -149,7 +149,7 @@
             // cboStatus
             // 
             this.cboStatus.FormattingEnabled = true;
-            this.cboStatus.Location = new System.Drawing.Point(78, 282);
+            this.cboStatus.Location = new System.Drawing.Point(96, 298);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(121, 21);
             this.cboStatus.TabIndex = 14;
@@ -157,7 +157,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 285);
+            this.label8.Location = new System.Drawing.Point(16, 301);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 15;
@@ -174,7 +174,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(123, 325);
+            this.btnCancel.Location = new System.Drawing.Point(142, 325);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
@@ -183,7 +183,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(78, 58);
+            this.txtAddress.Location = new System.Drawing.Point(96, 58);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(120, 70);
             this.txtAddress.TabIndex = 18;
@@ -193,7 +193,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(211, 360);
+            this.ClientSize = new System.Drawing.Size(229, 360);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOkay);

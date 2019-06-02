@@ -65,6 +65,7 @@ namespace DesignB_Server_CLI
                 Price = Convert.ToSingle(dr["item_price"]),
                 TimeStamp = Convert.ToDateTime(dr["item_timestamp"]),
                 Type = Convert.ToChar(dr["item_type"]),
+                Image64 = Convert.ToString(dr["item_image"]),
 
                 Length = dr["item_length"] is DBNull ? (int?)null : Convert.ToInt32(dr["item_length"]),
 
@@ -112,6 +113,58 @@ namespace DesignB_Server_CLI
                 foreach (DataRow dr in lcResult.Rows)
                     lcItems.Add(dataRow2AllItems(dr));
                 return lcItems;
+            }
+        }
+
+
+        public string PostItem(clsAllItems prItem)
+        {
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute("INSERT INTO tbl_items" +
+                    "(item_name, item_brand, item_type, item_material, item_description, item_price, item_quantity, item_image, item_length, item_size, item_diameter)" +
+                    "VALUES( @NAME, @BRAND, @TYPE, @MATERIAL, @DESCRIPTION, @PRICE, @QUANTITY, @IMAGE, @LENGTH, @SIZE, @DIAMETER)", prepareItemPars(prItem));
+                if (lcRecCount == 1) return "Item: " + prItem.Name + " has been aded to the store";
+                else return "Unexpected item count: " + lcRecCount;
+            }
+            catch (Exception ex) { return ex.GetBaseException().Message; }
+        }
+
+        private Dictionary<string, object> prepareItemPars(clsAllItems prItem)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(11);
+            par.Add("NAME", prItem.Name);
+            par.Add("BRAND", prItem.Brand);
+            par.Add("TYPE", prItem.Type);
+            par.Add("MATERIAL", prItem.Material);
+            par.Add("DESCRIPTION", prItem.Description);
+            par.Add("PRICE", prItem.Price);
+            par.Add("QUANTITY", prItem.Quantity);
+            par.Add("IMAGE", prItem.Image64);
+            par.Add("LENGTH", prItem.Length);
+            par.Add("SIZE", prItem.RingSize);
+            par.Add("DIAMETER", prItem.Diameter);
+            return par;
+        }
+
+        public string DeleteItem(int prItemID)
+        {
+
+            try
+            {
+                Dictionary<string, object> pars = new Dictionary<string, object>();
+                pars.Add("ID", prItemID);
+                int lcRecCount = clsDbConnection.Execute(
+                "DELETE FROM tbl_items WHERE item_id = @ID",pars
+                );
+                if (lcRecCount == 1)
+                    return "Item ID: " + prItemID + " has been deleted";
+                else
+                    return "Unexpected artist update count: " + lcRecCount;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
             }
         }
     }

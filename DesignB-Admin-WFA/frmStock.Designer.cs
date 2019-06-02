@@ -43,7 +43,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.btnOkay = new System.Windows.Forms.Button();
             this.txtDescription = new System.Windows.Forms.RichTextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboBrands = new System.Windows.Forms.ComboBox();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.lblImageName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -114,7 +116,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(127, 267);
+            this.btnCancel.Location = new System.Drawing.Point(124, 302);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
@@ -123,7 +125,7 @@
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(102, 207);
+            this.txtPrice.Location = new System.Drawing.Point(99, 238);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(170, 20);
             this.txtPrice.TabIndex = 12;
@@ -131,7 +133,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 210);
+            this.label6.Location = new System.Drawing.Point(9, 245);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 13;
@@ -139,7 +141,7 @@
             // 
             // txtQuantity
             // 
-            this.txtQuantity.Location = new System.Drawing.Point(102, 233);
+            this.txtQuantity.Location = new System.Drawing.Point(99, 268);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(170, 20);
             this.txtQuantity.TabIndex = 14;
@@ -147,7 +149,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 236);
+            this.label7.Location = new System.Drawing.Point(9, 271);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 15;
@@ -155,12 +157,13 @@
             // 
             // btnOkay
             // 
-            this.btnOkay.Location = new System.Drawing.Point(15, 267);
+            this.btnOkay.Location = new System.Drawing.Point(12, 302);
             this.btnOkay.Name = "btnOkay";
             this.btnOkay.Size = new System.Drawing.Size(75, 23);
             this.btnOkay.TabIndex = 16;
             this.btnOkay.Text = "Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
+            this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
             // 
             // txtDescription
             // 
@@ -170,20 +173,39 @@
             this.txtDescription.TabIndex = 18;
             this.txtDescription.Text = "";
             // 
-            // comboBox1
+            // cboBrands
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(102, 34);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(170, 21);
-            this.comboBox1.TabIndex = 19;
+            this.cboBrands.FormattingEnabled = true;
+            this.cboBrands.Location = new System.Drawing.Point(102, 34);
+            this.cboBrands.Name = "cboBrands";
+            this.cboBrands.Size = new System.Drawing.Size(170, 21);
+            this.cboBrands.TabIndex = 19;
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(12, 189);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(89, 23);
+            this.btnUpload.TabIndex = 20;
+            this.btnUpload.Text = "Upload Image";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // lblImageName
+            // 
+            this.lblImageName.Location = new System.Drawing.Point(107, 194);
+            this.lblImageName.Name = "lblImageName";
+            this.lblImageName.Size = new System.Drawing.Size(162, 41);
+            this.lblImageName.TabIndex = 21;
             // 
             // frmStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 304);
-            this.Controls.Add(this.comboBox1);
+            this.ClientSize = new System.Drawing.Size(283, 337);
+            this.Controls.Add(this.lblImageName);
+            this.Controls.Add(this.btnUpload);
+            this.Controls.Add(this.cboBrands);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnOkay);
             this.Controls.Add(this.label7);
@@ -223,6 +245,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnOkay;
         private System.Windows.Forms.RichTextBox txtDescription;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboBrands;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.Label lblImageName;
     }
 }

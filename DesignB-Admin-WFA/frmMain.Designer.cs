@@ -53,6 +53,7 @@
             this.btnEditItem.TabIndex = 50;
             this.btnEditItem.Text = "Edit Item";
             this.btnEditItem.UseVisualStyleBackColor = true;
+            this.btnEditItem.Click += new System.EventHandler(this.btnEditItem_Click);
             // 
             // lblOrdersQTY
             // 
@@ -115,7 +116,7 @@
             this.lstOrders.Name = "lstOrders";
             this.lstOrders.Size = new System.Drawing.Size(183, 355);
             this.lstOrders.TabIndex = 43;
-
+            this.lstOrders.DoubleClick += new System.EventHandler(this.lstOrders_DoubleClick);
             // 
             // label2
             // 
@@ -135,6 +136,7 @@
             this.btnDeleteItem.TabIndex = 41;
             this.btnDeleteItem.Text = "Delete Item";
             this.btnDeleteItem.UseVisualStyleBackColor = true;
+            this.btnDeleteItem.Click += new System.EventHandler(this.btnDeleteItem_Click);
             // 
             // btnAddItem
             // 
@@ -144,6 +146,7 @@
             this.btnAddItem.TabIndex = 40;
             this.btnAddItem.Text = "Add Item";
             this.btnAddItem.UseVisualStyleBackColor = true;
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
             // lstStock
             // 
@@ -152,7 +155,7 @@
             this.lstStock.Name = "lstStock";
             this.lstStock.Size = new System.Drawing.Size(183, 355);
             this.lstStock.TabIndex = 39;
-            this.lstStock.SelectedIndexChanged += new System.EventHandler(this.lstStock_SelectedIndexChanged);
+            this.lstStock.DoubleClick += new System.EventHandler(this.lstStock_DoubleClick);
             // 
             // label1
             // 

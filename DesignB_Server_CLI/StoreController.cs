@@ -45,7 +45,7 @@ namespace DesignB_Server_CLI
                 DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items", null);
                 List<clsAllItems> lcItems = new List<clsAllItems>();
                 foreach (DataRow dr in lcResult.Rows)
-                    lcItems.Add(dataRow2AllItems(dr, prBrandName));
+                    lcItems.Add(dataRow2AllItems(dr));
                 return lcItems;
             }
             else
@@ -54,18 +54,18 @@ namespace DesignB_Server_CLI
                 par.Add("NAME", prBrandName); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_brand = @NAME", par);
                 List<clsAllItems> lcItems = new List<clsAllItems>();
                 foreach (DataRow dr in lcResult.Rows)
-                    lcItems.Add(dataRow2AllItems(dr, prBrandName));
+                    lcItems.Add(dataRow2AllItems(dr));
                 return lcItems;
             }
         }
 
-        private clsAllItems dataRow2AllItems(DataRow dr, string prBrandName)
+        private clsAllItems dataRow2AllItems(DataRow dr)
         {
             return new clsAllItems()
             {
                 Id = Convert.ToInt32(dr["item_id"]),
                 Name = Convert.ToString(dr["item_name"]),
-                Brand = prBrandName,
+                Brand = Convert.ToString(dr["item_brand"]),
                 Material = Convert.ToString(dr["item_material"]),
                 Description = Convert.ToString(dr["item_description"]),
                 Price = Convert.ToSingle(dr["item_price"]),

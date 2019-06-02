@@ -37,6 +37,12 @@ namespace DesignB_Admin_WFA
         {
             return Name + " - " + Brand +" - "+ Quantity;
         }
+
+        public static clsAllItems NewWork(char prChoice)
+        {
+            return new clsAllItems() { Type = char.ToUpper(prChoice) };
+        }
+
     }
 
     /// <summary>

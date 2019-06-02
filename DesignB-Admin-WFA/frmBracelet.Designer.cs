@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtDiameter = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtDiameter
             // 
-            this.textBox1.Location = new System.Drawing.Point(102, 166);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 20);
-            this.textBox1.TabIndex = 19;
+            this.txtDiameter.Location = new System.Drawing.Point(102, 166);
+            this.txtDiameter.Name = "txtDiameter";
+            this.txtDiameter.Size = new System.Drawing.Size(170, 20);
+            this.txtDiameter.TabIndex = 19;
             // 
             // label8
             // 
@@ -53,9 +53,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(284, 304);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtDiameter);
             this.Name = "frmBracelet";
-            this.Controls.SetChildIndex(this.textBox1, 0);
+            this.Controls.SetChildIndex(this.txtDiameter, 0);
             this.Controls.SetChildIndex(this.label8, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -64,7 +64,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDiameter;
         private System.Windows.Forms.Label label8;
     }
 }
