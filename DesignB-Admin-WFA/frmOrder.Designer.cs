@@ -45,6 +45,7 @@
             this.btnOkay = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtAddress = new System.Windows.Forms.RichTextBox();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
             this.SuspendLayout();
             // 
@@ -136,6 +137,7 @@
             this.nudQuantity.Name = "nudQuantity";
             this.nudQuantity.Size = new System.Drawing.Size(120, 20);
             this.nudQuantity.TabIndex = 12;
+            this.nudQuantity.ValueChanged += new System.EventHandler(this.nudQuantity_ValueChanged);
             // 
             // lblTotalPrice
             // 
@@ -148,8 +150,9 @@
             // 
             // cboStatus
             // 
+            this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStatus.FormattingEnabled = true;
-            this.cboStatus.Location = new System.Drawing.Point(96, 298);
+            this.cboStatus.Location = new System.Drawing.Point(95, 244);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(121, 21);
             this.cboStatus.TabIndex = 14;
@@ -157,7 +160,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 301);
+            this.label8.Location = new System.Drawing.Point(12, 247);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(40, 13);
             this.label8.TabIndex = 15;
@@ -171,6 +174,7 @@
             this.btnOkay.TabIndex = 16;
             this.btnOkay.Text = "Okay";
             this.btnOkay.UseVisualStyleBackColor = true;
+            this.btnOkay.Click += new System.EventHandler(this.btnOkay_Click);
             // 
             // btnCancel
             // 
@@ -189,11 +193,22 @@
             this.txtAddress.TabIndex = 18;
             this.txtAddress.Text = "";
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(15, 271);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(201, 23);
+            this.btnReset.TabIndex = 19;
+            this.btnReset.Text = "Reset to default";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // frmOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(229, 360);
+            this.Controls.Add(this.btnReset);
             this.Controls.Add(this.txtAddress);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOkay);
@@ -238,5 +253,6 @@
         private System.Windows.Forms.Button btnOkay;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.RichTextBox txtAddress;
+        private System.Windows.Forms.Button btnReset;
     }
 }

@@ -26,26 +26,55 @@ namespace DesignB_Store_UWP
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// Get the data in the email text box
+        /// </summary>
+        /// <returns>The data in the email text box</returns>
         public string EmailText()
         {
             return txtEmail.Text;
         }
+
+        /// <summary>
+        /// Get the data in the address text box
+        /// </summary>
+        /// <returns>The data in the address text box</returns>
         public string AddressText()
         {
             return txtAddress.Text;
         }
+
+        /// <summary>
+        /// check to see if the information is valid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
+            //Is the email valid
             if (!IsValidEmail(txtEmail.Text))
             {
+                //if not, cancel and let the user try again
                 args.Cancel = true;
                 txbError.Text = "Please enter a valid Email";
             }
         }
 
+        /// <summary>
+        /// Cancel and close the dialog box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
         {
         }
+
+        /// <summary>
+        /// Checks to see if the email is valid
+        /// URL: https://docs.microsoft.com/en-us/dotnet/standard/base-types/how-to-verify-that-strings-are-in-valid-email-format
+        /// </summary>
+        /// <param name="email">email address being checked</param>
+        /// <returns>true is valid, else false</returns>
         public static bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))

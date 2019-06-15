@@ -9,14 +9,93 @@ namespace DesignB_Server_CLI
 {
     public class AdminController : System.Web.Http.ApiController
     {
-        public List<String> GetBrandList()
+        #region Brand Methods
+        /// <summary>
+        /// Get all brand names from the database
+        /// </summary>
+        /// <param name="prExBrand">Get all brand names apart from this parameter</param>
+        /// <returns>A list of brand names</returns>
+        public List<String> GetBrandList(string prExBrand)
         {
-            DataTable lcResult = clsDbConnection.GetDataTable("SELECT brnd_name FROM tbl_brands", null);
-            List<String> lcBrands = new List<String>();
-            foreach (DataRow dr in lcResult.Rows)
-                lcBrands.Add((string)dr[0]);
-            return lcBrands;
+
+                if (prExBrand != null)
+                {
+                    Dictionary<string, object> par = new Dictionary<string, object>(1);
+                    par.Add("EXBRAND", prExBrand);
+                    DataTable lcResult = clsDbConnection.GetDataTable("use dbdesignb; SELECT brnd_name FROM tbl_brands WHERE NOT brnd_name = @EXBRAND", par);
+                    List<String> lcBrands = new List<String>();
+                    foreach (DataRow dr in lcResult.Rows)
+                        lcBrands.Add((string)dr[0]);
+                    return lcBrands;
+                }
+                else
+                {
+                    DataTable lcResult = clsDbConnection.GetDataTable("use dbdesignb; SELECT brnd_name FROM tbl_brands", null);
+                    List<String> lcBrands = new List<String>();
+                    foreach (DataRow dr in lcResult.Rows)
+                        lcBrands.Add((string)dr[0]);
+                    return lcBrands;
+                }
+            
         }
+
+        /// <summary>
+        /// Get all data about a brand from the database
+        /// </summary>
+        /// <param name="prName">brand name being searched</param>
+        /// <returns>brand with all data, including item list</returns>
+        public clsBrand GetBrand(string prName)
+        {
+            Dictionary<string, object> par = new Dictionary<string, object>(1);
+            par.Add("NAME", prName);
+            DataTable lcResult =
+            clsDbConnection.GetDataTable("SELECT * FROM tbl_brands WHERE brnd_name = @NAME", par);
+            if (lcResult.Rows.Count > 0)
+                return new clsBrand()
+                {
+                    Name = Convert.ToString(lcResult.Rows[0]["brnd_name"]),
+                    Description = Convert.ToString(lcResult.Rows[0]["brnd_description"]),
+                    Image64 = Convert.ToString(lcResult.Rows[0]["brnd_image"]),
+                    ItemList = getBrandItems(prName)
+                };
+            else
+                return null;
+        }
+
+        /// <summary>
+        /// Get all items connected to a brand
+        /// </summary>
+        /// <param name="prBrandName">Brand name being searched</param>
+        /// <returns>list of items</returns>
+        private List<clsAllItems> getBrandItems(string prBrandName)
+        {
+            if (prBrandName == "All")
+            {
+                DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items", null);
+                List<clsAllItems> lcItems = new List<clsAllItems>();
+                foreach (DataRow dr in lcResult.Rows)
+                    lcItems.Add(dataRow2AllItems(dr));
+                return lcItems;
+            }
+            else
+            {
+                Dictionary<string, object> par = new Dictionary<string, object>(1);
+                par.Add("NAME", prBrandName);
+                DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_brand = @NAME", par);
+                List<clsAllItems> lcItems = new List<clsAllItems>();
+                foreach (DataRow dr in lcResult.Rows)
+                    lcItems.Add(dataRow2AllItems(dr));
+                return lcItems;
+            }
+        }
+        #endregion
+
+
+        #region Order Methods
+        /// <summary>
+        /// Get all orders from the database
+        /// </summary>
+        /// <returns>A list of orders</returns>
         public List<clsOrder> GetOrderList()
         {
             DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_orders", null);
@@ -26,6 +105,11 @@ namespace DesignB_Server_CLI
             return lcOrders;
         }
 
+        /// <summary>
+        /// Convert SQL row into a C# class 
+        /// </summary>
+        /// <param name="dr">SQL data row</param>
+        /// <returns>converted order data</returns>
         private clsOrder dataRow2Order(DataRow dr)
         {
             return new clsOrder()
@@ -42,6 +126,45 @@ namespace DesignB_Server_CLI
             };
         }
 
+        /// <summary>
+        /// Delete an order, if timestamp is correct
+        /// </summary>
+        /// <param name="prOrder">Order being deleted</param>
+        /// <returns>result of the SQL row count</returns>
+        public string DeleteOrder(clsOrder prOrder)
+        {
+
+            try
+            {
+                Dictionary<string, object> pars = new Dictionary<string, object>();
+                pars.Add("ID", prOrder.Id);
+                pars.Add("STAMP", prOrder.TimeStamp);
+                int lcRecCount = clsDbConnection.Execute(
+                "DELETE FROM tbl_orders WHERE ordr_id = @ID AND ordr_timestamp = @STAMP", pars
+                );
+                if (lcRecCount == 1)
+                    return "Order ID: " + prOrder.Id + " has been deleted";
+                else if (lcRecCount == 0)
+                {
+                    return "Item ID: " + prOrder.Id + " has been updated since you submitted, refresh and try again";
+                }
+                else
+                    return "Unexpected Order update count: " + lcRecCount;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().Message;
+            }
+        }
+        #endregion
+
+    
+        #region Item Methods
+        /// <summary>
+        /// Get a item from the database
+        /// </summary>
+        /// <param name="prId">the item ID</param>
+        /// <returns>a completed class of the searched item</returns>
         private clsAllItems getItem(int prId)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
@@ -52,6 +175,11 @@ namespace DesignB_Server_CLI
             return lcItems;
         }
   
+        /// <summary>
+        /// Convert SQL row to C#
+        /// </summary>
+        /// <param name="dr">SQL data row</param>
+        /// <returns>Coverted C# item</returns>
         private clsAllItems dataRow2AllItems(DataRow dr)
         {
             return new clsAllItems()
@@ -75,48 +203,11 @@ namespace DesignB_Server_CLI
             };
         }
 
-
-        public clsBrand GetBrand(string prName)
-        {
-            Dictionary<string, object> par = new Dictionary<string, object>(1);
-            par.Add("NAME", prName);
-            DataTable lcResult =
-            clsDbConnection.GetDataTable("SELECT * FROM tbl_brands WHERE brnd_name = @NAME", par);
-            if (lcResult.Rows.Count > 0)
-                return new clsBrand()
-                {
-                    Name = Convert.ToString(lcResult.Rows[0]["brnd_name"]),
-                    Description = Convert.ToString(lcResult.Rows[0]["brnd_description"]),
-                    Image64 = Convert.ToString(lcResult.Rows[0]["brnd_image"]),
-                    ItemList = getBrandItems(prName)
-                };
-            else
-                return null;
-        }
-
-
-        private List<clsAllItems> getBrandItems(string prBrandName)
-        {
-            if (prBrandName == "All")
-            {
-                DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items", null);
-                List<clsAllItems> lcItems = new List<clsAllItems>();
-                foreach (DataRow dr in lcResult.Rows)
-                    lcItems.Add(dataRow2AllItems(dr));
-                return lcItems;
-            }
-            else
-            {
-                Dictionary<string, object> par = new Dictionary<string, object>(1);
-                par.Add("NAME", prBrandName); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_brand = @NAME", par);
-                List<clsAllItems> lcItems = new List<clsAllItems>();
-                foreach (DataRow dr in lcResult.Rows)
-                    lcItems.Add(dataRow2AllItems(dr));
-                return lcItems;
-            }
-        }
-
-
+        /// <summary>
+        /// Insert a new item into the database
+        /// </summary>
+        /// <param name="prItem">the item being inserted</param>
+        /// <returns>row count</returns>
         public string PostItem(clsAllItems prItem)
         {
             try
@@ -130,6 +221,11 @@ namespace DesignB_Server_CLI
             catch (Exception ex) { return ex.GetBaseException().Message; }
         }
 
+        /// <summary>
+        /// converting C# to SQL 
+        /// </summary>
+        /// <param name="prItem">item being converted</param>
+        /// <returns>SQL code</returns>
         private Dictionary<string, object> prepareItemPars(clsAllItems prItem)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(11);
@@ -147,19 +243,28 @@ namespace DesignB_Server_CLI
             return par;
         }
 
-        public string DeleteItem(int prItemID)
+        /// <summary>
+        /// Delete a item from the database
+        /// </summary>
+        /// <param name="prItem">item being deleted</param>
+        /// <returns>row count</returns>
+        public string DeleteItem(clsAllItems prItem)
         {
 
             try
             {
                 Dictionary<string, object> pars = new Dictionary<string, object>();
-                pars.Add("ID", prItemID);
+                pars.Add("ID", prItem.Id);
+                pars.Add("STAMP", prItem.TimeStamp);
                 int lcRecCount = clsDbConnection.Execute(
-                "DELETE FROM tbl_items WHERE item_id = @ID",pars
+                "DELETE FROM tbl_items WHERE item_id = @ID AND item_timestamp = @STAMP",pars
                 );
                 if (lcRecCount == 1)
-                    return "Item ID: " + prItemID + " has been deleted";
-                else
+                    return "Item ID: " + prItem.Id + " has been deleted";
+                else if(lcRecCount == 0)
+                {
+                    return "Item ID: "+prItem.Id+" has been updated since you submitted, refresh and try again";
+                }else
                     return "Unexpected artist update count: " + lcRecCount;
             }
             catch (Exception ex)
@@ -167,5 +272,8 @@ namespace DesignB_Server_CLI
                 return ex.GetBaseException().Message;
             }
         }
+        #endregion
+
+      
     }
 }

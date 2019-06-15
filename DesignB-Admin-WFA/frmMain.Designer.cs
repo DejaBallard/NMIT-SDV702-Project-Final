@@ -43,11 +43,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboBrands = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnEditItem
             // 
-            this.btnEditItem.Location = new System.Drawing.Point(205, 100);
+            this.btnEditItem.Location = new System.Drawing.Point(206, 126);
             this.btnEditItem.Name = "btnEditItem";
             this.btnEditItem.Size = new System.Drawing.Size(75, 23);
             this.btnEditItem.TabIndex = 50;
@@ -93,28 +96,30 @@
             // 
             // btnDeleteOrder
             // 
-            this.btnDeleteOrder.Location = new System.Drawing.Point(498, 100);
+            this.btnDeleteOrder.Location = new System.Drawing.Point(499, 126);
             this.btnDeleteOrder.Name = "btnDeleteOrder";
             this.btnDeleteOrder.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteOrder.TabIndex = 45;
             this.btnDeleteOrder.Text = "Delete Order";
             this.btnDeleteOrder.UseVisualStyleBackColor = true;
+            this.btnDeleteOrder.Click += new System.EventHandler(this.btnDeleteOrder_Click);
             // 
             // btnEditOrder
             // 
-            this.btnEditOrder.Location = new System.Drawing.Point(498, 71);
+            this.btnEditOrder.Location = new System.Drawing.Point(499, 97);
             this.btnEditOrder.Name = "btnEditOrder";
             this.btnEditOrder.Size = new System.Drawing.Size(75, 23);
             this.btnEditOrder.TabIndex = 44;
             this.btnEditOrder.Text = "Edit Order";
             this.btnEditOrder.UseVisualStyleBackColor = true;
+            this.btnEditOrder.Click += new System.EventHandler(this.btnEditOrder_Click);
             // 
             // lstOrders
             // 
             this.lstOrders.FormattingEnabled = true;
-            this.lstOrders.Location = new System.Drawing.Point(310, 71);
+            this.lstOrders.Location = new System.Drawing.Point(310, 97);
             this.lstOrders.Name = "lstOrders";
-            this.lstOrders.Size = new System.Drawing.Size(183, 355);
+            this.lstOrders.Size = new System.Drawing.Size(183, 329);
             this.lstOrders.TabIndex = 43;
             this.lstOrders.DoubleClick += new System.EventHandler(this.lstOrders_DoubleClick);
             // 
@@ -130,7 +135,7 @@
             // 
             // btnDeleteItem
             // 
-            this.btnDeleteItem.Location = new System.Drawing.Point(205, 129);
+            this.btnDeleteItem.Location = new System.Drawing.Point(206, 155);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteItem.TabIndex = 41;
@@ -140,7 +145,7 @@
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Location = new System.Drawing.Point(205, 71);
+            this.btnAddItem.Location = new System.Drawing.Point(206, 97);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(75, 23);
             this.btnAddItem.TabIndex = 40;
@@ -151,9 +156,9 @@
             // lstStock
             // 
             this.lstStock.FormattingEnabled = true;
-            this.lstStock.Location = new System.Drawing.Point(16, 71);
+            this.lstStock.Location = new System.Drawing.Point(17, 97);
             this.lstStock.Name = "lstStock";
-            this.lstStock.Size = new System.Drawing.Size(183, 355);
+            this.lstStock.Size = new System.Drawing.Size(183, 329);
             this.lstStock.TabIndex = 39;
             this.lstStock.DoubleClick += new System.EventHandler(this.lstStock_DoubleClick);
             // 
@@ -186,11 +191,42 @@
             this.label3.TabIndex = 52;
             this.label3.Text = "Brand:";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 13);
+            this.label4.TabIndex = 53;
+            this.label4.Text = "Name - Brand - Quantity";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(307, 81);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(122, 13);
+            this.label5.TabIndex = 54;
+            this.label5.Text = "Quantity - Name - Status";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(499, 444);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 20);
+            this.btnRefresh.TabIndex = 55;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(582, 471);
+            this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cboBrands);
             this.Controls.Add(this.btnEditItem);
@@ -230,6 +266,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboBrands;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

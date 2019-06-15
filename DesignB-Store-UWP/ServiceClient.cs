@@ -16,7 +16,7 @@ namespace DesignB_Store_UWP
         {
             using (HttpClient lcHttpClient = new HttpClient())
                 return JsonConvert.DeserializeObject<List<string>>
-                    (await lcHttpClient.GetStringAsync("http://localhost:60064/api/store/GetBrandList/"));
+                    (await lcHttpClient.GetStringAsync("http://localhost:60064/api/store/GetBrandList"));
         }
 
         internal async static Task<clsBrand> GetBrandAsync(string prBrandName)

@@ -9,15 +9,25 @@ namespace DesignB_Server_CLI
 {
     public class StoreController : System.Web.Http.ApiController
     {
+        #region Brand and Items Methods
+        /// <summary>
+        /// Get all brand names from the database
+        /// </summary>
+        /// <returns>A list of brand names</returns>
         public List<String> GetBrandList()
         {
             DataTable lcResult = clsDbConnection.GetDataTable("SELECT brnd_name FROM tbl_brands", null);
             List<String> lcBrands = new List<String>();
             foreach (DataRow dr in lcResult.Rows)
-               lcBrands.Add((string)dr[0]);
+                lcBrands.Add((string)dr[0]);
             return lcBrands;
         }
 
+        /// <summary>
+        /// Get all data about the brand from the database
+        /// </summary>
+        /// <param name="prName">Name of brand being searched</param>
+        /// <returns>Brand details and items</returns>
         public clsBrand GetBrand(string prName)
         {
             Dictionary<string, object> par = new Dictionary<string, object>(1);
@@ -36,13 +46,16 @@ namespace DesignB_Server_CLI
                 return null;
         }
 
-
-        #region Get items from database, into a list
+        /// <summary>
+        /// Get all items connected with the brand
+        /// </summary>
+        /// <param name="prBrandName">Name of brand being searched</param>
+        /// <returns>A list of items</returns>
         private List<clsAllItems> getBrandItems(string prBrandName)
         {
             if (prBrandName == "All")
             {
-                DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items", null);
+                DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_quantity >0", null);
                 List<clsAllItems> lcItems = new List<clsAllItems>();
                 foreach (DataRow dr in lcResult.Rows)
                     lcItems.Add(dataRow2AllItems(dr));
@@ -51,7 +64,7 @@ namespace DesignB_Server_CLI
             else
             {
                 Dictionary<string, object> par = new Dictionary<string, object>(1);
-                par.Add("NAME", prBrandName); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_brand = @NAME", par);
+                par.Add("NAME", prBrandName); DataTable lcResult = clsDbConnection.GetDataTable("SELECT * FROM tbl_items WHERE item_brand = @NAME AND item_quantity >0", par);
                 List<clsAllItems> lcItems = new List<clsAllItems>();
                 foreach (DataRow dr in lcResult.Rows)
                     lcItems.Add(dataRow2AllItems(dr));
@@ -59,6 +72,11 @@ namespace DesignB_Server_CLI
             }
         }
 
+        /// <summary>
+        /// Converting SQL Data rows into C# class data
+        /// </summary>
+        /// <param name="dr">the datarow</param>
+        /// <returns>Converted C# item</returns>
         private clsAllItems dataRow2AllItems(DataRow dr)
         {
             return new clsAllItems()
@@ -83,7 +101,13 @@ namespace DesignB_Server_CLI
         }
         #endregion
 
-        #region Post Order into database
+
+        #region Order Methods
+        /// <summary>
+        /// Insert the Order into the database
+        /// </summary>
+        /// <param name="prOrder">Order being inserted</param>
+        /// <returns>Return the row count</returns>
         public int PostOrder(clsOrder prOrder)
         {
 
@@ -94,6 +118,12 @@ namespace DesignB_Server_CLI
                 return lcRecCount;
 
         }
+
+        /// <summary>
+        /// Convert the C# class into SQL
+        /// </summary>
+        /// <param name="prOrder"></param>
+        /// <returns></returns>
         private Dictionary<string, object> prepareOrderParameter(clsOrder prOrder) {
             Dictionary<string, object> lcPar = new Dictionary<string, object>();
             lcPar.Add("EMAIL", prOrder.Email);
@@ -106,9 +136,7 @@ namespace DesignB_Server_CLI
             return lcPar;
 
         }
-        #endregion
 
-        #region Update Item QTY
         /// <summary>
         ///Checks to see if there is the correct amount of QTY left by checking if the timestamp has been updated.
         /// </summary>
@@ -126,6 +154,7 @@ namespace DesignB_Server_CLI
             return lcRecCount;
         }
         #endregion
+
     }
 
 }

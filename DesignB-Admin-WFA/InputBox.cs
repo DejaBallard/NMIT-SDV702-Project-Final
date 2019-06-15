@@ -22,6 +22,11 @@ namespace DesignB_Admin_WFA
             cboType.Items.Add("Bracelet");
         }
 
+        /// <summary>
+        /// Set onscreen information to local variables and close
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnOkay_Click(object sender, EventArgs e)
         {
             _Answer = cboType.SelectedIndex;
@@ -29,6 +34,10 @@ namespace DesignB_Admin_WFA
             this.Close();
         }
 
+        /// <summary>
+        /// check the local variable answer and return a char
+        /// </summary>
+        /// <returns>Return the item type</returns>
         public char GetAnswer()
         {
             switch (_Answer)

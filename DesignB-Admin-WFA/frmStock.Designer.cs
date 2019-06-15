@@ -122,6 +122,7 @@
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtPrice
             // 
@@ -175,6 +176,7 @@
             // 
             // cboBrands
             // 
+            this.cboBrands.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBrands.FormattingEnabled = true;
             this.cboBrands.Location = new System.Drawing.Point(102, 34);
             this.cboBrands.Name = "cboBrands";

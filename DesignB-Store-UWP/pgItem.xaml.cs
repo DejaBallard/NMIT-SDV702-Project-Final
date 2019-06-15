@@ -25,10 +25,12 @@ namespace DesignB_Store_UWP
     /// </summary>
     public sealed partial class pgItem : Page
     {
+        #region Local Varaibles 
         private clsAllItems _Item;
         private delegate void LoadItemControlDelegate(clsAllItems prItem);
         private Dictionary<char, Delegate> _ItemContent;
         private bool _Navigation = true;
+        #endregion
 
         public pgItem()
         {
@@ -140,12 +142,8 @@ namespace DesignB_Store_UWP
                         MessageDialog message = new MessageDialog("Session Expired, Reloading page");
                         message.ShowAsync();
                 }
-
-            }
-           
+            }          
         }
-
-
     }
 }
 
