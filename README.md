@@ -17,6 +17,7 @@ Both applications communicate with a API controller i created which talks to a s
 
 1. MySQL installed
 2. Must have DesignB_Server_CLI open before running the other programs
+3. Use the most up to date branch
 
 <h2>Installation Instructions</h2>
 
