@@ -149,6 +149,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DesignB-Store-UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

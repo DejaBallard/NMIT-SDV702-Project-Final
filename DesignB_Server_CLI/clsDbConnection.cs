@@ -32,6 +32,7 @@ namespace DesignB_Server_CLI
 
         public static List<string> CheckTables()
         {
+            //Check to see if there is any tables
             DataTable lcResult = GetDataTable("use dbdesignb; Show Tables;", null);
             List<String> lcBrands = new List<String>();
             foreach (DataRow dr in lcResult.Rows)
@@ -41,18 +42,29 @@ namespace DesignB_Server_CLI
 
         public static int CreateDB()
         {
+            //get the connection string from app.config and split it into an array
             string[] conArray = ConnectionStr.Split(';');
-            string connStr = conArray[1] + ";" + conArray[2] + ";" + conArray[3] + ";"; 
+            string connStr ="";
+            //create a new string without the database, so it can access one level up
+            foreach(string i in conArray)
+            {
+                if(i != "Database=dbdesignb")
+                {
+                    connStr = connStr+ i + ";";
+                }
+            }
             using (DbConnection lcDataConnection = ProviderFactory.CreateConnection())
             using (DbCommand lcCommand = lcDataConnection.CreateCommand())
             {
                 lcDataConnection.ConnectionString = connStr;
                 lcDataConnection.Open();
+                //Get the SQL creation file
                 string lcSQLFile = "..\\..\\..\\DesignB-Database-mySQL\\Creation Database Script.sql";
                 string[] prSQL = File.ReadAllLines(lcSQLFile);
                 string lcSQL ="";
                 foreach (string line in prSQL)
                 {
+                    //Convert file into a one long string to be sent to the database
                     lcSQL += line;
                 }
                 lcCommand.CommandText = lcSQL;     
