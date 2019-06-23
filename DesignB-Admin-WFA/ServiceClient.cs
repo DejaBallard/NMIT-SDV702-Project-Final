@@ -67,12 +67,7 @@ namespace DesignB_Admin_WFA
         /// <returns>a string of if the server completed the task or a exeption message</returns>
         internal async static Task<string> DeleteItemAsync(clsAllItems prItem)
         {
-            using (HttpClient lcHttpClient = new HttpClient())
-            {
-                HttpResponseMessage lcRespMessage = await lcHttpClient.DeleteAsync
-                ($"http://localhost:60064/api/admin/DeleteItem?prItemID={prItem.Id}&prItemStamp={prItem.TimeStamp}");
-                return await lcRespMessage.Content.ReadAsStringAsync();
-            }
+            return await InsertOrUpdateAsync(prItem, "Http://localhost:60064/api/admin/DeleteItem", "DELETE");
         }
         #endregion
 

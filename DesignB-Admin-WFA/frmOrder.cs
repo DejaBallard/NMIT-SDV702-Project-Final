@@ -82,6 +82,7 @@ namespace DesignB_Admin_WFA
 
             txtID.Text = _Order.Id.ToString();
             txtAddress.Text = _Order.Address;
+            
             txtBrand.Text = _Order.Item.Brand;
             txtEmail.Text = _Order.Email;
             txtItem.Text = _Order.Item.Name;
@@ -125,6 +126,7 @@ namespace DesignB_Admin_WFA
         /// <param name="e"></param>
         private async void btnOkay_Click(object sender, EventArgs e)
         {
+
             //check to see if the data is valid
             if (isValid())
             {
@@ -132,7 +134,8 @@ namespace DesignB_Admin_WFA
                 pushData();
 
                 //send local varible to the server to be added
-                await ServiceClient.UpdateOrderAsync(_Order);
+                MessageBox.Show(ServiceClient.UpdateOrderAsync(_Order).ToString());
+                Close();
             }
         }
 
@@ -227,6 +230,14 @@ namespace DesignB_Admin_WFA
             _Order.TotalPrice = _Price;
         }
 
-        #endregion     
+        #endregion
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to cancel and close?", "Cancel", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+                Close();
+        }
     }
 }

@@ -139,8 +139,8 @@ namespace DesignB_Admin_WFA
                 {
                   //Save data to local variable
                   pushData();
-                  // Send local variable to the server
-                  await ServiceClient.InsertItemAsync(_Item);
+                    // Send local variable to the server
+                    MessageBox.Show(ServiceClient.InsertItemAsync(_Item).ToString());
 
                 }
                 else
@@ -173,7 +173,7 @@ namespace DesignB_Admin_WFA
                 return false;
             }
             //Does the quantity have something other than a int character
-            else if (int.TryParse(txtQuantity.Text, out int QuantityResult))
+            else if (!int.TryParse(txtQuantity.Text, out int QuantityResult))
             {
                 MessageBox.Show("Please enter a numberic value in the quantity text box");
                 return false;
