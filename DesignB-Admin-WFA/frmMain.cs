@@ -150,6 +150,7 @@ namespace DesignB_Admin_WFA
             {
                 MessageBox.Show(ex.Message);
             }
+            updateDisplay();
         }
 
         /// <summary>
@@ -177,6 +178,7 @@ namespace DesignB_Admin_WFA
                     MessageBox.Show("Error, the selected item type does not exist. Contact your administrator");
                 }
             }
+            updateDisplay();
         }
 
         /// <summary>
@@ -195,6 +197,7 @@ namespace DesignB_Admin_WFA
             {
                 MessageBox.Show(ex.Message);
             }
+            updateDisplay();
         }
 
         /// <summary>
@@ -233,6 +236,7 @@ namespace DesignB_Admin_WFA
         {    
             //Open the form with the highlighted order's data from the onscreen order list
             frmOrder.Run(lstOrders.SelectedItem as clsOrder);
+            updateDisplay();
         }
 
         /// <summary>
@@ -244,6 +248,7 @@ namespace DesignB_Admin_WFA
         {
             //Open the form with the highlighted order's data from the onscreen order list
             frmOrder.Run(lstOrders.SelectedItem as clsOrder);
+            updateDisplay();
         }
 
         /// <summary>
