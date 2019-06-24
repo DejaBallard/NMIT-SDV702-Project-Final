@@ -134,7 +134,7 @@ namespace DesignB_Admin_WFA
                 pushData();
 
                 //send local varible to the server to be added
-                MessageBox.Show(ServiceClient.UpdateOrderAsync(_Order).ToString());
+                MessageBox.Show(await ServiceClient.UpdateOrderAsync(_Order));
                 Close();
             }
         }

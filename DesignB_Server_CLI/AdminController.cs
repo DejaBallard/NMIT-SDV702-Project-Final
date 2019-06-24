@@ -221,6 +221,20 @@ namespace DesignB_Server_CLI
             catch (Exception ex) { return ex.GetBaseException().Message; }
         }
 
+        public string PutItem(clsAllItems prItems)
+        {
+            try
+            {
+                int lcRecCount = clsDbConnection.Execute("UPDATE tbl_items "+
+                    "SET item_name = @NAME, item_brand = @BRAND, item_type = @TYPE, item_material = @MATERIAL, item_description = @DESCRIPTION, item_price = @PRICE, item_quantity =  @QUANTITY, item_image = @IMAGE, item_length = @LENGTH, item_size = @SIZE, item_diameter = @DIAMETER " +
+                    " where item_id = @ID;",prepareItemPars(prItems));
+                return "Updated " + prItems.Name;
+            }
+            catch (Exception ex)
+            {
+                return ex.GetBaseException().ToString();
+            }
+        }
         /// <summary>
         /// converting C# to SQL 
         /// </summary>
@@ -240,6 +254,10 @@ namespace DesignB_Server_CLI
             par.Add("LENGTH", prItem.Length);
             par.Add("SIZE", prItem.RingSize);
             par.Add("DIAMETER", prItem.Diameter);
+            if (prItem.Id != 0) {
+                par.Add("ID", prItem.Id);
+                par.Add("TIMESTAMP", prItem.TimeStamp);
+            }
             return par;
         }
 

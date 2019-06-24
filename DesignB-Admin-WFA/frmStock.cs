@@ -140,7 +140,7 @@ namespace DesignB_Admin_WFA
                   //Save data to local variable
                   pushData();
                     // Send local variable to the server
-                    MessageBox.Show(ServiceClient.InsertItemAsync(_Item).ToString());
+                    MessageBox.Show(await ServiceClient.InsertItemAsync(_Item));
 
                 }
                 else
@@ -148,7 +148,7 @@ namespace DesignB_Admin_WFA
                     //Save data to local variable
                     pushData();
                     // Send local variable to the server
-                    MessageBox.Show(ServiceClient.UpdateItemAsync(_Item).ToString());
+                    MessageBox.Show(await ServiceClient.UpdateItemAsync(_Item));
                 }
                 Close();
             }
